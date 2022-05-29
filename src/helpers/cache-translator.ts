@@ -1,8 +1,13 @@
 import GoogleTranslator from './google-translator';
-import {CacheProvider} from '../types';
+import {CacheProvider, TranslationOptions} from '../types';
 
 export default class CacheTranslator extends GoogleTranslator {
-  cacheProvider!: CacheProvider;
+  cacheProvider: CacheProvider;
+
+  constructor(options: TranslationOptions, cacheProvider: CacheProvider) {
+    super(options, cacheProvider);
+    this.cacheProvider = cacheProvider;
+  }
 
   async translate(value: string): Promise<string | undefined> {
     let translation = await this.cacheProvider.get(this.to, value);

@@ -27,7 +27,9 @@ export default class TranslatorFactory {
     return to === from;
   };
 
-  static isCachable = (cacheProvider?: CacheProvider): boolean => {
+  static isCachable = (
+    cacheProvider?: CacheProvider
+  ): cacheProvider is CacheProvider => {
     return !!cacheProvider;
   };
 }
